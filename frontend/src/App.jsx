@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from './pages/Home.jsx';
 import Login from './pages/Login.jsx';
-import User from './pages/User.jsx';
+//import User from './pages/User.jsx';
 import '../src/index.css'
 
 
@@ -12,7 +12,6 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/Login" element={<Login />} />
-          {/*<Route path="/lodging/:id" element={<User />} />*/}
         </Routes>
       </BrowserRouter>
     </div>
