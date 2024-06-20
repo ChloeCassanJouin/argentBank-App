@@ -18,6 +18,15 @@ export default function App() {
   );
 }
 
+/* <Route
+          path="/profile"
+          element={
+            <ProtectedRoute path="/profile" element={<UserProfilePage />} />
+          }
+        ></Route>*/
+
+
+
 
 /*import { useState } from 'react'
 import reactLogo from '../src/assets/react.svg'
