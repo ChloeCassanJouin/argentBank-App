@@ -1,27 +1,16 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { getLoginUser } from '../API/api.js';
 
 export default function LoginContent() {
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+  const [password, setPassword] = useState('');
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        clearAlerts();
-        const user = {
-            email: email,
-            password: password,
-        };
-        login(user);
-        console.log(user);
-    };
-
-    const clearAlerts = () => {
-        // Logique pour effacer les alertes (non implémenté dans le code fourni)
-    };
-  
-    const login = (user) => {
-        // Logique pour gérer la connexion de l'utilisateur (non implémenté dans le code fourni)
-    };
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const user = { email, password };
+    await getLoginUser(user);
+  };
 
     return (
         <main className="main bg-dark">

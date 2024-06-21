@@ -1,5 +1,17 @@
 import React from 'react';
 
+const User = () => {
+  return (
+    <main className="main bg-dark">
+      <h1>Welcome, User!</h1>
+    </main>
+  );
+};
+
+export default User;
+
+/*import React from 'react';
+
 const UserContent = () => {
     return (
 
@@ -43,4 +55,4 @@ const UserContent = () => {
         );
     };
     
-    export default UserContent;
+    export default UserContent;*/

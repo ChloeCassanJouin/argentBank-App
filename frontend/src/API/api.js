@@ -1,5 +1,13 @@
 export const getLoginUser = async (user) => {
   try {
+    console.log("Starting getLoginUser with user:", user);
+
+    const recuperationValeurID = VerifID(user);
+    if (!recuperationValeurID) {
+      console.error("User verification failed:", user);
+      return;
+    }
+
     const response = await fetch("http://localhost:3001/api/v1/user/login", {
       method: "POST",
       headers: {
@@ -20,7 +28,10 @@ export const getLoginUser = async (user) => {
 
     if (data.token) {
       localStorage.setItem("token", data.token);
-      window.location.href = "../../index.html";
+      window.location.href = "../src/pages/User.jsx";
+      console.log("Token stored:", data.token);
+    } else {
+      console.error("No token found in response:", data);
     }
 
     return data;
@@ -28,5 +39,13 @@ export const getLoginUser = async (user) => {
   } catch (error) {
     console.error('Error loading the JSON file_api.jsx:', error);
     return [];
+  }
+};
+
+const VerifID = (user) => {
+  console.log("Verifying user:", user);
+  if (!user || !user.email || !user.password) {
+    console.error("Invalid user object:", user);
+    return false;
   }
 };

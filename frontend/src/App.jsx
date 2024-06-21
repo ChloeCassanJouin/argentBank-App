@@ -1,23 +1,22 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from './pages/Home.jsx';
-import Login from './pages/Login.jsx';
-//import User from './pages/User.jsx';
-import '../src/index.css'
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Home from '../src/pages/Home';
+import Login from '../src/pages/Login';
+import User from '../src/pages/User';
 
-
-export default function App() {
+function App() {
   return (
-    <div>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/Login" element={<Login />} />
-        </Routes>
-      </BrowserRouter>
-    </div>
+    <Router>
+      <Routes>
+      <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/user" element={<User />} />
+      </Routes>
+    </Router>
   );
 }
 
+export default App;
 /* <Route
           path="/profile"
           element={
