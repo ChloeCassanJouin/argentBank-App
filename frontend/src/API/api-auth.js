@@ -1,6 +1,8 @@
 const API_URL = "http://localhost:3001/api/v1/user/login";
 const UNAUTHORIZED_STATUS = 401;
 const NOT_FOUND_STATUS = 404;
+const NOT_EXISTING_STATUS = 400;
+
 
 export const getLoginUser = async (user) => {
   try {
@@ -21,8 +23,8 @@ export const getLoginUser = async (user) => {
 
     console.log("Statut réponse :", response.status);
 
-    // les vérifications si erreur 401 ou 404
-    if (response.status === UNAUTHORIZED_STATUS || response.status === NOT_FOUND_STATUS) {
+    // les vérifications si erreur 401 ou 404 ou 400
+    if (response.status === UNAUTHORIZED_STATUS || response.status === NOT_FOUND_STATUS || response.status === NOT_EXISTING_STATUS) {
       showPopupAlert("Vos identifiants ne sont pas valides.");
       return;
     }
@@ -30,10 +32,10 @@ export const getLoginUser = async (user) => {
     const data = await response.json();
     console.log("Etat data :", data);
 
-    if (data.token) {
-      localStorage.setItem("token", data.token);
-      window.location.href = "../src/pages/User.jsx";
-      console.log("Token stocké :", data.token);
+    if (data.body.token) {
+      localStorage.setItem("token", data.body.token);
+      //window.location.href = "../src/pages/User.jsx";
+      console.log("Token stocké :", data.body.token);
     } else {
       console.error("Token non récupéré :", data);
     }
@@ -76,36 +78,21 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-/*const API_URL = "http://localhost:3001/api/v1/user";
-
-const handleResponse = async (response) => {
-  const data = await response.json();
-  if (!response.ok) {
-    throw new Error(data.message || "Something went wrong");
+const showPopupAlert = (message) => {
+  const alertContainer = document.getElementById("alert-container");
+  if (alertContainer) {
+    alertContainer.innerText = message;
+    alertContainer.style.display = "block";
+  } else {
+    alert(message); // Fallback au cas où l'élément alert-container n'est pas trouvé
   }
-  return data;
 };
 
-export const getLoginUser = async (user) => {
-  const response = await fetch(`${API_URL}/login`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(user),
-  });
-
-  return handleResponse(response);
+const clearAlerts = () => {
+  const alertContainer = document.getElementById("alert-container");
+  if (alertContainer) {
+    alertContainer.innerText = "";
+    alertContainer.style.display = "none";
+  }
 };
 
-export const signupUser = async (user) => {
-  const response = await fetch(`${API_URL}/signup`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(user),
-  });
-
-  return handleResponse(response);
-};*/
