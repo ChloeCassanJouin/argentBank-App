@@ -3,7 +3,6 @@ const UNAUTHORIZED_STATUS = 401;
 const NOT_FOUND_STATUS = 404;
 const NOT_EXISTING_STATUS = 400;
 
-
 export const getLoginUser = async (user) => {
   try {
     const isValidUser = verifyUser(user);
@@ -12,7 +11,6 @@ export const getLoginUser = async (user) => {
       return;
     }
 
-    //mon appel vers l'API
     const response = await fetch(API_URL, {
       method: "POST",
       headers: {
@@ -23,7 +21,6 @@ export const getLoginUser = async (user) => {
 
     console.log("Statut réponse :", response.status);
 
-    // les vérifications si erreur 401 ou 404 ou 400
     if (response.status === UNAUTHORIZED_STATUS || response.status === NOT_FOUND_STATUS || response.status === NOT_EXISTING_STATUS) {
       showPopupAlert("Vos identifiants ne sont pas valides.");
       return;
@@ -34,8 +31,6 @@ export const getLoginUser = async (user) => {
 
     if (data.body.token) {
       localStorage.setItem("token", data.body.token);
-      //window.location.href = "../src/pages/User.jsx";
-      console.log("Token stocké :", data.body.token);
     } else {
       console.error("Token non récupéré :", data);
     }
@@ -62,7 +57,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const emailInput = document.getElementById("email");
   const passwordInput = document.getElementById("password");
 
-  //récupération des identifiants
   if (submitButton && emailInput && passwordInput) {
     submitButton.addEventListener("click", function (event) {
       event.preventDefault();
@@ -71,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
         email: emailInput.value,
         password: passwordInput.value,
       };
-      getLoginUser(user);
+      getLoginUser(user, useNavigate());
     });
   } else {
     console.error("Éléments du formulaire non trouvés");
@@ -95,4 +89,3 @@ const clearAlerts = () => {
     alertContainer.style.display = "none";
   }
 };
-

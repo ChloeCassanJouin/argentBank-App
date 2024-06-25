@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import FeatureItem from './FeatureItem';
-import featuresData from '../data-json/features.json'; // Importer les données JSON
+import featuresData from '../data-json/features.json'; 
 
 const HomeContent = () => {
   const [features, setFeatures] = useState([]);
