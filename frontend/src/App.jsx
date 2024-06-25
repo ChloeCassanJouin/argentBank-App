@@ -3,6 +3,32 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from '../src/pages/Home';
 import Login from '../src/pages/Login';
 import User from '../src/pages/User';
+import Header from '../src/components/Header';
+import Footer from '../src/components/Footer';
+
+function App() {
+  return (
+    <Router>
+      <Header />
+      <main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/user" element={<User />} />
+        </Routes>
+      </main>
+      <Footer />
+    </Router>
+  );
+}
+
+export default App;
+
+/*mport React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Home from '../src/pages/Home';
+import Login from '../src/pages/Login';
+import User from '../src/pages/User';
 
 function App() {
   return (
@@ -16,7 +42,7 @@ function App() {
   );
 }
 
-export default App;
+export default App;*/
 /* <Route
           path="/profile"
           element={

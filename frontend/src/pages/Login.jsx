@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import Header from '../components/Header';
 import Login from '../components/LoginContent';
-import Footer from '../components/Footer';
 import { getLoginUser } from '../API/api-auth';
 
-export default function Home() {
+export default function LoginPage() {
   const [data, setData] = useState([]); 
   // useState: Permet de gérer l'état local des composants fonctionnels. Exemple d'utilisation : gestion de la visibilité des éléments, stockage des données récupérées, etc.
 
@@ -22,9 +20,7 @@ export default function Home() {
 
     return (
       <>   
-        <Header />
         <Login data={data} />
-        <Footer />
       </>
     );
   }
