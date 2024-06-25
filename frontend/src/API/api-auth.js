@@ -60,6 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const emailInput = document.getElementById("email");
   const passwordInput = document.getElementById("password");
 
+  //récupération des identifiants
   if (submitButton && emailInput && passwordInput) {
     submitButton.addEventListener("click", function (event) {
       event.preventDefault();
@@ -75,63 +76,36 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-/*export const getLoginUser = async (user) => {
-  try {
+/*const API_URL = "http://localhost:3001/api/v1/user";
 
-    const recuperationValeurID = VerifID(user);
-    if (!recuperationValeurID) {
-      console.error("User verification failed:", user);
-      return;
-    }
-
-    const response = await fetch("http://localhost:3001/api/v1/user/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(user),
-    });
-
-    console.log("Response status:", response.status);
-
-    if (response.status === 401 || response.status === 404) {
-      showPopupAlert("Vos identifiants ne sont pas valides.");
-      return;
-    }
-
-    const data = await response.json();
-    console.log("Response data:", data);
-
-    if (data.token) {
-      localStorage.setItem("token", data.token);
-      window.location.href = "../src/pages/User.jsx";
-      console.log("Token stored:", data.token);
-    } else {
-      console.error("No token found in response:", data);
-    }
-
-    return data;
-
-  } catch (error) {
-    console.error('Error loading the JSON file_api.jsx:', error);
-    return [];
+const handleResponse = async (response) => {
+  const data = await response.json();
+  if (!response.ok) {
+    throw new Error(data.message || "Something went wrong");
   }
+  return data;
 };
 
-const VerifID = (user) => {
-  if (!user || !user.email || !user.password) {
-    console.error("Invalid user object:", user);
-    return false;
-  }
+export const getLoginUser = async (user) => {
+  const response = await fetch(`${API_URL}/login`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(user),
+  });
+
+  return handleResponse(response);
 };
 
-//récupération des valeurs email et password
-submit.addEventListener("click", function (event) {
-  event.preventDefault();
-  clearAlerts();
-  const user = {
-    email: emailInput.value,
-    password: passwordInput.value,
-  };
-  login(user);
-});*/
+export const signupUser = async (user) => {
+  const response = await fetch(`${API_URL}/signup`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(user),
+  });
+
+  return handleResponse(response);
+};*/

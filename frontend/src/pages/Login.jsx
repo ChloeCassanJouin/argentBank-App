@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import Login from '../components/LoginContent';
 import Footer from '../components/Footer';
-import { getLoginUser } from '../API/api';
+import { getLoginUser } from '../API/api-auth';
 
 export default function Home() {
   const [data, setData] = useState([]); 

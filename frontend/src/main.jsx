@@ -1,9 +1,9 @@
 
-/*import React from 'react';
+/*mport React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import App from '../src/App.jsx'
-import store from '../src/store/store.js';
+import store from './store/store';
+import App from './App';
 
 ReactDOM.render(
   <Provider store={store}>
@@ -11,6 +11,7 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 );*/
+
 
 import React from 'react'
 import ReactDOM from 'react-dom/client';

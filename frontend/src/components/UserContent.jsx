@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 const User = () => {
+  const [userName, setUserName] = useState('');
+
+  useEffect(() => {
+    const name = localStorage.getItem('userName');
+    if (name) {
+      setUserName(name);
+    }
+  }, []);
+
   return (
     <main className="main bg-dark">
-      <h1>Welcome, User!</h1>
+      <h1>Welcome, {userName}!</h1>
     </main>
   );
 };
@@ -56,3 +65,27 @@ const UserContent = () => {
     };
     
     export default UserContent;*/
+
+    /*import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserProfile } from '../actions/userActions';
+
+const User = () => {
+  const dispatch = useDispatch();
+  const userName = useSelector((state) => state.auth.name);
+  const profile = useSelector((state) => state.user.profile);
+
+  useEffect(() => {
+    dispatch(getUserProfile());
+  }, [dispatch]);
+
+  return (
+    <main className="main bg-dark">
+      <h1>Welcome, {userName}!</h1>
+     Display additional profile information if needed
+    </main>
+  );
+};
+
+export default User;
+*/

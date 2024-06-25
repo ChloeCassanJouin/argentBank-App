@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { getLoginUser } from '../API/api.js';
+import { getLoginUser } from '../API/api-auth';
 
 export default function LoginContent() {
     const [email, setEmail] = useState('');
