@@ -6,7 +6,6 @@ const HomeContent = () => {
   const [features, setFeatures] = useState([]);
 
   useEffect(() => {
-    // Charger les données des fonctionnalités
     setFeatures(featuresData);
   }, []);
 

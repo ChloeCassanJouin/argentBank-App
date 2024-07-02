@@ -10,7 +10,6 @@ const UserContent = () => {
   };
 
   const handleSave = () => {
-    // Implémentez la logique de sauvegarde ici
     setIsEditing(false);
   };
 
@@ -53,25 +52,3 @@ const UserContent = () => {
 
 export default UserContent;
 
-
-
-/*import React, { useEffect, useState } from 'react';
-
-const User = () => {
-  const [userName, setUserName] = useState('');
-
-  useEffect(() => {
-    const name = localStorage.getItem('userName');
-    if (name) {
-      setUserName(name);
-    }
-  }, []);
-
-  return (
-    <main className="main bg-dark">
-      <h1>Welcome, {userName}!</h1>
-    </main>
-  );
-};
-
-export default User;*/

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { getLoginUser } from '../API/api-auth';
+
 
 export default function LoginContent() {
     const [email, setEmail] = useState('');
@@ -11,6 +11,7 @@ export default function LoginContent() {
     const user = { email, password };
     await getLoginUser(user);
   };
+
 
     return (
         <main className="main bg-dark">

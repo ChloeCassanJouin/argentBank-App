@@ -52,3 +52,27 @@ export const updateUserProfile = async (token, user) => {
 
   return handleResponse(response);
 };*/
+
+/*export const getUserProfile = async (token) => {
+  const response = await fetch('/api/profile', {
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  });
+  const data = await response.json();
+  return data;
+};
+
+export const updateUserProfile = async (token, userDetails) => {
+  const response = await fetch('/api/profile', {
+    method: 'PUT',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(userDetails)
+  });
+  const data = await response.json();
+  return data;
+};*/

@@ -1,7 +1,4 @@
 const API_URL = "http://localhost:3001/api/v1/user/login";
-const UNAUTHORIZED_STATUS = 401;
-const NOT_FOUND_STATUS = 404;
-const NOT_EXISTING_STATUS = 400;
 
 export const getLoginUser = async (user) => {
   try {
@@ -19,14 +16,12 @@ export const getLoginUser = async (user) => {
       body: JSON.stringify(user),
     });
 
-    console.log("Statut réponse :", response.status);
-
-    if (response.status === UNAUTHORIZED_STATUS || response.status === NOT_FOUND_STATUS || response.status === NOT_EXISTING_STATUS) {
+    if (!response.ok) {
       showPopupAlert("Vos identifiants ne sont pas valides.");
       return;
     }
 
-    const data = await response.json();
+    const data = await response.json(); // déclaration de DATA
     console.log("Etat data :", data);
 
     if (data.body.token) {
@@ -43,6 +38,8 @@ export const getLoginUser = async (user) => {
   }
 };
 
+
+//verifie si cases identifiant complétées
 const verifyUser = (user) => {
   if (!user || !user.email || !user.password) {
     console.error("identifiant invalide :", user);
@@ -61,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
     submitButton.addEventListener("click", function (event) {
       event.preventDefault();
       clearAlerts();
-      const user = {
+      const user = { // déclaration de USER
         email: emailInput.value,
         password: passwordInput.value,
       };
@@ -72,16 +69,18 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+//Apparition Pop Up
 const showPopupAlert = (message) => {
   const alertContainer = document.getElementById("alert-container");
   if (alertContainer) {
     alertContainer.innerText = message;
     alertContainer.style.display = "block";
   } else {
-    alert(message); // Fallback au cas où l'élément alert-container n'est pas trouvé
+    alert(message);
   }
 };
 
+//Suppression pop up
 const clearAlerts = () => {
   const alertContainer = document.getElementById("alert-container");
   if (alertContainer) {
