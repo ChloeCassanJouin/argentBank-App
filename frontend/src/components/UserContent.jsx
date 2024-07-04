@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import Account from './Account';
 import UserNameForm from './UserNameForm';
 
 const UserContent = () => {
   const [isEditing, setIsEditing] = useState(false);
+  const userName = useSelector((state) => state.userName.value);
 
   const handleEditClick = () => {
     setIsEditing(true);
@@ -20,7 +22,7 @@ const UserContent = () => {
   return (
     <main className="main bg-dark">
       <div className="header">
-        <h1>Welcome back<br />Tony Jarvis!</h1>
+      <h1>Welcome back<br />{userName || 'Tony Jarvis'}</h1>
         {!isEditing && (
           <button className="edit-button" onClick={handleEditClick}>
             Edit Name

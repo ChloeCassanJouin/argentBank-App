@@ -1,10 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { getLoginUser } from '../API/api-auth';
 
 
 export default function LoginContent() {
-    const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+const [email, setEmail] = useState('');
+const [password, setPassword] = useState('');
+const navigate = useNavigate();
+const token = useSelector((state) => state.token.value);
+
+useEffect(() => {
+    if (token) {
+      navigate('/profile'); 
+    }
+  }, [token, navigate]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();

@@ -1,8 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import argentBankLogo from '../assets/img/argentBankLogo.png'; 
+import { Link, useNavigate } from 'react-router-dom';
+import argentBankLogo from '../assets/img/argentBankLogo.png';
+import { useDispatch } from 'react-redux';
+import { deleteToken } from '../store/store.js';
+
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleSignInClick = () => {
+    dispatch(deleteToken());
+    navigate('/login');
+  };
+
     
     return (
         <nav className="main-nav">
@@ -14,7 +25,7 @@ const Header = () => {
                 />
             </Link>
             <div>
-                <Link className="main-nav-item" to="/Login">
+                <Link className="main-nav-item" to="/Login" onClick={handleSignInClick}>
                 <i className="fa fa-user-circle"></i>
                 Sign In
                 </Link>
