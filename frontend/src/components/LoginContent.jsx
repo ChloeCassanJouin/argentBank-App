@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { getLoginUser } from '../API/api-auth';
+import { useDispatch, useSelector } from 'react-redux';
+import { getLoginUser } from '../API/api-auth'; 
+import { retrieveToken } from '../store/store';
 
 
 export default function LoginContent() {
 const [email, setEmail] = useState('');
 const [password, setPassword] = useState('');
 const navigate = useNavigate();
+const dispatch = useDispatch();
 const token = useSelector((state) => state.token.value);
 
 useEffect(() => {
+    console.log('Token updated:', token);
     if (token) {
       navigate('/profile'); 
     }
@@ -19,8 +22,16 @@ useEffect(() => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const user = { email, password };
-    await getLoginUser(user);
-  };
+    try {
+        const response = await getLoginUser(user);
+        if (response.token) {
+          console.log('Login successful, token received:', response.token); // Pour le débogage
+          dispatch(retrieveToken(response.token)); // Mettez à jour le token dans le store
+        }
+      } catch (error) {
+        console.error('Login failed:', error);
+      }
+    };
 
 
     return (
@@ -36,7 +47,6 @@ useEffect(() => {
                             id="username"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            placeholder="Email"
                         />
                     </div>
                     <div className="input-wrapper">
@@ -46,7 +56,6 @@ useEffect(() => {
                             id="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            placeholder="Password"
                         />
                     </div>
                     <div className="input-remember">

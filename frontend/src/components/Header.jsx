@@ -35,26 +35,3 @@ const Header = () => {
 };
 
 export default Header;
-
-/*import React from 'react';
-import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-
-const Header = () => {
-  const token = useSelector((state) => state.user.token);
-
-  return (
-    <header>
-      <nav>
-        <Link to="/">Home</Link>
-        {token ? (
-          <Link to="/user">User</Link>
-        ) : (
-          <Link to="/login">Login</Link>
-        )}
-      </nav>
-    </header>
-  );
-};
-
-export default Header;*/

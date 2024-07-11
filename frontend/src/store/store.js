@@ -27,16 +27,16 @@ const tokenSlice = createSlice({
 
   //SLICE USER NAME
   const userNameSlice = createSlice({
-    name: "userName",
+    name: "id",
     initialState: {
-      value: '',
+      value: null,
       status: 'not_retrieved',
     },
     reducers: {
-      setUserName: (state, action) => {
+      retrieveUserName: (state, action) => {
         state.value = action.payload;
         state.status = 'present';
-        console.log("setUserName :", state.value);
+        console.log("retrieveUserName :", state.value);
       },
       /*updateUserName: (state, action) => {
         state.value = action.payload;
@@ -53,7 +53,7 @@ const tokenSlice = createSlice({
 
 //EXPORTATION
 export const { retrieveToken, deleteToken } = tokenSlice.actions;
-export const { setUserName, updateUserName, deleteUserName } = userNameSlice.actions;
+export const { retrieveUserName, deleteUserName } = userNameSlice.actions;
 
 
 

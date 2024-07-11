@@ -22,7 +22,7 @@ const UserContent = () => {
   return (
     <main className="main bg-dark">
       <div className="header">
-      <h1>Welcome back<br />{userName || 'Tony Jarvis'}</h1>
+      <h1>Welcome back<br />{userName}</h1>
         {!isEditing && (
           <button className="edit-button" onClick={handleEditClick}>
             Edit Name
@@ -53,4 +53,3 @@ const UserContent = () => {
 };
 
 export default UserContent;
-
