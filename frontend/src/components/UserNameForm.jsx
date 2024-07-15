@@ -1,18 +1,33 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
+import { retrieveProfile } from '../redux/userSlice';
+//import { updateUserProfileAPI } from '../API/api-UserProfile'
 
 const UserNameForm = ({ onSave, onCancel }) => {
   const dispatch = useDispatch();
   const userName = useSelector((state) => state.userName.value);
 
-  // État local pour le nouveau userName
   const [newUserName, setNewUserName] = useState(userName);
 
-  // Fonction pour gérer la sauvegarde du nouveau userName
-  const handleSave = () => {
-    dispatch(setUserName(newUserName));  // Met à jour le userName avec l'action `setUserName`
-    onSave();  // Appelle le callback onSave pour fermer le formulaire
+  const handleSave = async () => {
+    //const state = store.getState();
+    const token = state.token.value;
+
+  if (!token) {
+      //console.error('No token found in store');
+      return;
+    }
+
+    const updatedUser = { userName: newUserName };
+
+    const response = await updateUserProfileAPI(token, updatedUser);
+
+    if (response) {
+      dispatch(retrieveUserName(newUserName));
+      onSave();
+    } else {
+      console.error('Failed to update user profile');
+    }
   };
 
   return (
@@ -25,8 +40,7 @@ const UserNameForm = ({ onSave, onCancel }) => {
             type="text" 
             id="userName" 
             name="userName"    
-            value={newUserName}
-            onChange={(e) => setNewUserName(e.target.value)}  // Met à jour l'état local pour le nouveau userName
+            onChange={(e) => setNewUserName(e.target.value)}  
           />
         </div>
         <div className="form-group">
@@ -46,8 +60,8 @@ const UserNameForm = ({ onSave, onCancel }) => {
           />
         </div>
         <div className="form-buttons">
-          <button type="button" onClick={handleSave}>Save</button>  {/* Appelle `handleSave` pour mettre à jour le userName */}
-          <button type="button" onClick={onCancel}>Cancel</button>  {/* Appelle `onCancel` pour annuler la modification */}
+          <button type="button" onClick={handleSave}>Save</button>  
+          <button type="button" onClick={onCancel}>Cancel</button>  
         </div>
       </form>
     </div>

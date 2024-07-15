@@ -1,9 +1,8 @@
 const API_URL = "http://localhost:3001/api/v1/user/login";
 
-import { store } from '../store/store.js';
-import { retrieveToken } from '../store/store.js';
+import { retrieveToken } from '../redux/userSlice';
 
-export const getLoginUser = async (user) => {
+export const getLoginUser = async (user, dispatch) => {
   try {
     const response = await fetch(API_URL, {
       method: "POST",
@@ -14,17 +13,15 @@ export const getLoginUser = async (user) => {
     });
 
     const data = await response.json(); // Déclaration de data
-    console.log("Etat data :", data);
 
     if (!response.ok) {
       showPopupAlert("Vos identifiants ne sont pas valides.");
-      return;
+      return null;
     } else {
       const token = data.body.token;
-      store.dispatch(retrieveToken(token));
-      console.log(token);
-      return token; 
-      
+      dispatch(retrieveToken(token));  // Passer dispatch en paramètre
+      console.log(token)
+      return token;
     }
   } catch (error) { 
     console.error('Erreur connexion :', error);

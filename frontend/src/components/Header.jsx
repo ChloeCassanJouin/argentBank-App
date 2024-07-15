@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import argentBankLogo from '../assets/img/argentBankLogo.png';
 import { useDispatch } from 'react-redux';
-import { deleteToken } from '../store/store.js';
+import { deleteProfile } from '../redux/userSlice';
 
 
 const Header = () => {
@@ -10,7 +10,7 @@ const Header = () => {
   const navigate = useNavigate();
 
   const handleSignInClick = () => {
-    dispatch(deleteToken());
+    dispatch(deleteProfile());
     navigate('/login');
   };
 

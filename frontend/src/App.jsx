@@ -5,7 +5,7 @@ import LoginPage from '../src/pages/LoginPage';
 import UserPage from '../src/pages/UserPage';
 import Header from '../src/components/Header';
 import Footer from '../src/components/Footer';
-import { store } from './store/store';
+import  store  from './redux/store';
 import { Provider } from 'react-redux';
 import ProtectedRoute from './components/ProtectedRoute';
 
@@ -15,13 +15,11 @@ function App() {
     <Provider store={store}>
       <Router>
         <Header />
-        <main>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/profile" element={<ProtectedRoute element={UserPage} />} />
           </Routes>
-        </main>
         <Footer />
       </Router>
     </Provider>
@@ -29,3 +27,5 @@ function App() {
 }
 
 export default App;
+
+// password123
