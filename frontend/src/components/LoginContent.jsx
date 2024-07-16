@@ -24,7 +24,9 @@ export default function LoginContent() {
       const token = await getLoginUser(user, dispatch);
       if (token) {
         dispatch(retrieveToken(token)); // Mettez à jour le token dans le store
-        console.log('Login successful, token received:', token); // Pour le débogage
+        console.log('Login Content', token);
+        
+        navigate('/profile'); // Pour le débogage
       }
     } catch (error) {
       console.error('Login failed:', error);

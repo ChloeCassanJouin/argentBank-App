@@ -16,7 +16,7 @@ const userSlice = createSlice({
     retrieveToken: (state, action) => {
       state.token = action.payload;
       localStorage.setItem('token', action.payload);
-      console.log('Token:', state.token);
+      console.log('userSlice', state.token);
     },
     retrieveProfile: (state, action) => {
       const { id, userName, email, firstName, lastName, createdAt, updatedAt } = action.payload;
@@ -32,7 +32,7 @@ const userSlice = createSlice({
       state.createdAt = createdAt;
       state.updatedAt = updatedAt;
       console.log('Profile ID:', state.id);
-      console.log('Profile UserName:', state.userName);
+      console.log('userSlice - Profile UserName:', state.userName);
       console.log('Profile Email:', state.email);
       console.log('Profile FirstName:', state.firstName);
       console.log('Profile LastName:', state.lastName);

@@ -20,7 +20,7 @@ export const getLoginUser = async (user, dispatch) => {
     } else {
       const token = data.body.token;
       dispatch(retrieveToken(token));  // Passer dispatch en paramètre
-      console.log(token)
+      console.log("api-auth", token)
       return token;
     }
   } catch (error) { 

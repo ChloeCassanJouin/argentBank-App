@@ -11,7 +11,8 @@ const UserContent = () => {
 
   const userName = useSelector((state) => state.user.userName); 
 
-  const token = localStorage.getItem('token'); // ou `useSelector(state => state.auth.token)` si le token est stocké dans Redux
+  const token = localStorage.getItem('token');
+  console.log("local storage: ", token) // ou `useSelector(state => state.auth.token)` si le token est stocké dans Redux
 
   // Assurez-vous que le jeton est défini
   if (!token) {
@@ -20,10 +21,9 @@ const UserContent = () => {
   }
 
   const fetchUserProfile = async () => {
-    console.log('dispatch:', dispatch);
     try {
       const userProfile = await getUserProfileAPI({ token }, dispatch);
-      console.log('User Profile:', userProfile);
+      console.log('Usercontent', userProfile);
       setUserData(userProfile);
     } catch (error) {
       console.error('Failed to fetch user profile:', error);
