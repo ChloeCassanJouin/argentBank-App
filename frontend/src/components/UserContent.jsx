@@ -50,6 +50,7 @@ const UserContent = () => {
 
   return (
     <main className="main bg-white">
+       {/*<main className={`main ${active ? "bg-white" : "bg-dark"}`}>{children}</main>*/}
       <div className="header">
         <h1>Welcome back<br />{userName}</h1>
         {!isEditing && (
@@ -66,17 +67,17 @@ const UserContent = () => {
         <>
           <Account
             title="Argent Bank Checking (x8349)"
-            amount={userData.checkingAmount}
+            amount="$48,098.43"
             description="Available Balance"
           />
           <Account
             title="Argent Bank Savings (x6712)"
-            amount={userData.savingsAmount}
+            amount="$48,098.43"
             description="Available Balance"
           />
           <Account
             title="Argent Bank Credit Card (x8349)"
-            amount={userData.creditAmount}
+            amount="$48,098.43"
             description="Current Balance"
           />
         </>

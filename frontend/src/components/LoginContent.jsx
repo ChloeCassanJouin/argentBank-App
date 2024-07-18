@@ -7,7 +7,7 @@ import { retrieveToken } from '../redux/userSlice';
 export default function LoginContent() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState(''); // État pour le message d'erreur
+  const [errorMessage, setErrorMessage] = useState(''); 
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const token = useSelector((state) => state.user.token);
@@ -24,7 +24,7 @@ export default function LoginContent() {
     try {
       const token = await getLoginUser(user);
       if (token) {
-        dispatch(retrieveToken(token)); // Mettez à jour le token dans le store
+        dispatch(retrieveToken(token)); 
         navigate('/profile');
       }
     } catch (error) {

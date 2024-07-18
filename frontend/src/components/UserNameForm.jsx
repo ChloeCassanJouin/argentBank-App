@@ -5,8 +5,8 @@ import { updateUserProfileAPI } from '../API/api-UserProfile';
 
 const UserNameForm = ({ onSave, onCancel }) => {
   const dispatch = useDispatch();
-  const userName = useSelector((state) => state.user.userName); // Correction de l'accès au state
-  const token = useSelector((state) => state.user.token); // Correction de l'accès au state
+  const userName = useSelector((state) => state.user.userName); 
+  const token = useSelector((state) => state.user.token);
 
   const [newUserName, setNewUserName] = useState(userName);
 
@@ -22,7 +22,7 @@ const UserNameForm = ({ onSave, onCancel }) => {
       const updatedProfile = await updateUserProfileAPI({ user: updatedUser, token });
 
       if (updatedProfile) {
-        dispatch(retrieveProfile(updatedProfile)); // Mettez à jour le profil dans le store
+        dispatch(retrieveProfile(updatedProfile)); 
         onSave();
       } else {
         console.error('Failed to update user profile');
