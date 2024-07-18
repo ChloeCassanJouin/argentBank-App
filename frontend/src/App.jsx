@@ -8,6 +8,7 @@ import Footer from '../src/components/Footer';
 import  store  from './redux/store';
 import { Provider } from 'react-redux';
 import ProtectedRoute from './components/ProtectedRoute';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 
 function App() {

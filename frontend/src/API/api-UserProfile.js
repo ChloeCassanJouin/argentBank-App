@@ -23,7 +23,7 @@ export const getUserProfileAPI = async ({ token }, dispatch) => {
       throw new Error("Une erreur est survenue lors de la récupération du profil.");
     } else {
       const profileInformations = data.body;
-      console.log('api-UserProfile', profileInformations);
+      console.log('api-UserProfile POST', profileInformations);
     dispatch(retrieveProfile(profileInformations)); 
     return profileInformations;
     }
@@ -57,7 +57,7 @@ export const updateUserProfileAPI = async ({ user, token }) => {
     } 
 
     const updatedProfileData = await response.json();
-    console.log("Updated profile data:", updatedProfileData);
+    console.log("API-userProfile PUT:", updatedProfileData);
 
     if (updatedProfileData && updatedProfileData.body) {
       return updatedProfileData.body;
