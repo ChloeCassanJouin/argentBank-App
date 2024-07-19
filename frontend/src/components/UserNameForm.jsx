@@ -5,8 +5,7 @@ import { updateUserProfileAPI } from '../API/api-UserProfile';
 
 const UserNameForm = ({ onSave, onCancel }) => {
   const dispatch = useDispatch();
-  const userName = useSelector((state) => state.user.userName); 
-  const token = useSelector((state) => state.user.token);
+  const { userName, firstName, lastName, token } = useSelector((state) => state.user);
 
   const [newUserName, setNewUserName] = useState(userName);
 
@@ -22,7 +21,7 @@ const UserNameForm = ({ onSave, onCancel }) => {
       const updatedProfile = await updateUserProfileAPI({ user: updatedUser, token });
 
       if (updatedProfile) {
-        dispatch(retrieveProfile(updatedProfile)); 
+        dispatch(retrieveProfile(updatedProfile));
         onSave();
       } else {
         console.error('Failed to update user profile');
@@ -39,9 +38,9 @@ const UserNameForm = ({ onSave, onCancel }) => {
         <div className="form-group">
           <label htmlFor="userName">User Name: </label>
           <input 
-            type="text" 
-            id="userName" 
-            name="userName" 
+            type="text"
+            id="userName"
+            name="userName"
             value={newUserName}
             onChange={(e) => setNewUserName(e.target.value)}
           />
@@ -49,18 +48,20 @@ const UserNameForm = ({ onSave, onCancel }) => {
         <div className="form-group">
           <label htmlFor="firstName">First Name: </label>
           <input 
-            type="text" 
-            id="firstName" 
-            name="firstName" 
+            type="text"
+            id="firstName"
+            name="firstName"
+            value={firstName}
             disabled
           />
         </div>
         <div className="form-group">
           <label htmlFor="lastName">Last Name: </label>
           <input 
-            type="text" 
-            id="lastName" 
-            name="lastName" 
+            type="text"
+            id="lastName"
+            name="lastName"
+            value={lastName}
             disabled
           />
         </div>

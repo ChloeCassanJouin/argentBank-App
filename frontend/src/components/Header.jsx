@@ -23,32 +23,39 @@ const Header = () => {
   return (
     <nav className="main-nav">
       <Link className="main-nav-logo" to="/">
-      {location.pathname === '/profile' && <i className="fa-solid fa-vault"></i>}
-        <img
-          className="main-nav-logo-image"
-          src={argentBankLogo}
-          alt="Argent Bank Logo"
-        />
+        {location.pathname === '/profile' ? (
+          <div className="bank-name">
+            <i className="fa-solid fa-vault"></i>
+            <span className="argent">Argent</span>
+            <span className="bank">Bank</span>
+          </div>
+        ) : (
+          <img
+            className="main-nav-logo-image"
+            src={argentBankLogo}
+            alt="Argent Bank Logo"
+          />
+        )}
       </Link>
       <div className="main-nav-links">
         {isLoggedIn ? (
           <>
-          <Link className="main-nav-item" to="/profile">
-            {userName}
+            <Link className="main-nav-item" to="/profile">
+              {userName}
+              <i className="fa fa-user-circle"></i>
+            </Link>
+            <Link className="main-nav-item" to="/vault">
+              <i className="fa-regular fa-gear"></i>
+            </Link>
+            <Link className="main-nav-item" to="/" onClick={handleSignOutClick}>
+              <i className="fa-solid fa-power-off"></i>
+            </Link>
+          </>
+        ) : (
+          <Link className="main-nav-item" to="/login">
             <i className="fa fa-user-circle"></i>
+            Sign In
           </Link>
-          <Link className="main-nav-item" to="/vault">
-          <i class="fa-regular fa-gear"></i>
-          </Link>
-          <Link className="main-nav-item" to="/" onClick={handleSignOutClick}>
-          <i class="fa-solid fa-power-off"></i>
-          </Link>
-        </>
-      ) : (
-        <Link className="main-nav-item" to="/login">
-          <i className="fa fa-user-circle"></i>
-          Sign In
-        </Link>
         )}
       </div>
     </nav>

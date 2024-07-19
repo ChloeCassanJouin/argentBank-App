@@ -1,9 +1,6 @@
-import { retrieveProfile } from '../redux/userSlice';
-
-
 const API_URL = "http://localhost:3001/api/v1/user/profile";
 
-export const getUserProfileAPI = async ({ token }, dispatch) => {
+export const getUserProfileAPI = async ({ token }) => {
   if (!token) {
     console.error('No token provided');
     return null;
@@ -24,8 +21,7 @@ export const getUserProfileAPI = async ({ token }, dispatch) => {
     } else {
       const profileInformations = data.body;
       console.log('api-UserProfile POST', profileInformations);
-    dispatch(retrieveProfile(profileInformations)); 
-    return profileInformations;
+      return profileInformations;
     }
   } catch (error) {
     console.error('Erreur lors de la récupération du profil utilisateur :', error);
@@ -33,9 +29,6 @@ export const getUserProfileAPI = async ({ token }, dispatch) => {
   }
 };
 
-
-
-// Fonction pour mettre à jour le profil utilisateur
 export const updateUserProfileAPI = async ({ user, token }) => {
   if (!token) {
     console.error('No token provided');
