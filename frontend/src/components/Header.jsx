@@ -4,6 +4,7 @@ import argentBankLogo from '../assets/img/argentBankLogo.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteProfile } from '../redux/userSlice';
 
+
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -45,7 +46,7 @@ const Header = () => {
               <i className="fa fa-user-circle"></i>
             </Link>
             <Link className="main-nav-item" to="/vault">
-              <i className="fa-regular fa-gear"></i>
+            <i className="fa-solid fa-gear"></i>
             </Link>
             <Link className="main-nav-item" to="/" onClick={handleSignOutClick}>
               <i className="fa-solid fa-power-off"></i>
