@@ -16,7 +16,6 @@ export const getLoginUser = async (user) => {
       throw new Error("Vos identifiants ne sont pas valides.");
     } else {
       const token = data.body.token;
-      console.log("api-auth", token);
       return token;
     }
   } catch (error) {

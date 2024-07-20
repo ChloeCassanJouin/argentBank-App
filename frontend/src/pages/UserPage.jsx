@@ -13,7 +13,6 @@ export default function Home() {
   const userName = useSelector((state) => state.user.userName); 
 
   const token = localStorage.getItem('token');
-  console.log("local storage: ", token) 
 
   if (!token) {
     console.error('No authentication token found.');
@@ -23,7 +22,6 @@ export default function Home() {
   const fetchUserProfile = async () => {
     try {
       const userProfile = await getUserProfileAPI({ token });
-      console.log('Usercontent', userProfile);
       setUserData(userProfile);
       dispatch(retrieveProfile(userProfile));
     } catch (error) {

@@ -47,7 +47,7 @@ const UserNameForm = ({ onSave, onCancel }) => {
         </div>
         <div className="form-group">
           <label htmlFor="firstName">First Name: </label>
-          <input 
+          <input className="disabledNameForm"
             type="text"
             id="firstName"
             name="firstName"
@@ -57,7 +57,7 @@ const UserNameForm = ({ onSave, onCancel }) => {
         </div>
         <div className="form-group">
           <label htmlFor="lastName">Last Name: </label>
-          <input 
+          <input className="disabledNameForm"
             type="text"
             id="lastName"
             name="lastName"

@@ -26,7 +26,6 @@ body {
 .bg-white {
   background-color: white;
   padding-top: 1px;
-  padding-bottom: 18em;
 }
 
 h1, h2, label {
@@ -376,6 +375,10 @@ h1, h2, label {
 
 .form-group {
   padding-bottom: 10px;
+}
+
+.disabledNameForm {
+  color: #D0D0D0;
 }
 
 .form-buttons-container {

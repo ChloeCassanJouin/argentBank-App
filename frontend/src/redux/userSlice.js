@@ -19,7 +19,6 @@ const userSlice = createSlice({
     retrieveToken: (state, action) => {
       state.token = action.payload;
       localStorage.setItem('token', action.payload);
-      console.log('userSlice', state.token);
       state.isLoggedIn = true;
     },
     retrieveProfile: (state, action) => {
@@ -35,17 +34,10 @@ const userSlice = createSlice({
       state.lastName = lastName;
       state.createdAt = createdAt;
       state.updatedAt = updatedAt;
-      console.log('Profile ID:', state.id);
-      console.log('userSlice - Profile UserName:', state.userName);
-      console.log('Profile Email:', state.email);
-      console.log('Profile FirstName:', state.firstName);
-      console.log('Profile LastName:', state.lastName);
-      console.log('Profile CreatedAt:', state.createdAt);
-      console.log('Profile UpdatedAt:', state.updatedAt);
+
     },
     updateProfile: (state, action) => {
       state.userName = action.payload;
-      console.log('Updated UserName:', state.userName);
     },
     deleteProfile: (state) => {
       state.token = null;
@@ -57,7 +49,6 @@ const userSlice = createSlice({
       state.lastName = '';
       state.createdAt = '';
       state.updatedAt = '';
-      console.log('Profile deleted');
       state.isLoggedIn = false;
     },
   },
