@@ -77,7 +77,7 @@ export default function Home() {
           <Account
             title="Argent Bank Credit Card (x8349)"
             amount="$48,098.43"
-            description="Current Balance"
+            description="Available Balance"
           />
         </>
       ) : (
